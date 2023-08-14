@@ -5,9 +5,6 @@ export default function ItemCount({stock, initial, onAdd}) {
   const [cantidadProducto, setCantidadProducto] = useState(initial);
 
   useEffect(() => {
-    /* If (cantidadProducto > stock) {
-      setCantidadProducto(stock);
-    } */
     setCantidadProducto(1);
   }, [stock]);
 
@@ -23,34 +20,35 @@ export default function ItemCount({stock, initial, onAdd}) {
     }
   };
 
-  if (stock < 1) {
+  if (stock === 0) {
     return (
-      <div className='flex flex-col items-center'>
-        <div className='flex items-center'>
-          <span className='px-3 py-1 text-gray-700 font-semibold'>Sin stock</span>
-        </div>
-      </div>
+      <div className='text-gray-700 font-semibold'>Sin stock</div>
     );
   }
 
   return (
-    <div className='flex flex-col items-center'>
-      <div className='grid grid-cols-3 gap-3'>
-        <button onClick={handleClickRestar} disabled={cantidadProducto < 2}
-          className='px-2 py-1 rounded bg-teal-600/80
-            disabled:opacity-60 disabled:cursor-not-allowed enabled:hover:bg-teal-700'>
-          <AiOutlineMinus className='text-white' />
+    <div className='flex flex-col items-start gap-1'>
+      <div className='flex items-center justify-center gap-4'>
+        <div className='grid grid-cols-3 gap-3'>
+          <button onClick={handleClickRestar} disabled={cantidadProducto < 2}
+            className='px-2 py-1 rounded bg-teal-600/80
+              disabled:opacity-60 disabled:cursor-not-allowed enabled:hover:bg-teal-700'>
+            <AiOutlineMinus className='text-white' />
 
-        </button>
+          </button>
 
-        <span className='text-gray-700 font-semibold '>{cantidadProducto}</span>
+          <span className='text-gray-700 font-semibold text-center'>{cantidadProducto}</span>
 
-        <button onClick={handleClickSumar} disabled={cantidadProducto >= stock}
-          className='px-2 py-1 rounded bg-teal-600/80
-            disabled:opacity-60 disabled:cursor-not-allowed enabled:hover:bg-teal-700'>
-          <AiOutlinePlus className='text-white' />
-        </button>
+          <button onClick={handleClickSumar} disabled={cantidadProducto >= stock}
+            className='px-2 py-1 rounded bg-teal-600/80
+              disabled:opacity-60 disabled:cursor-not-allowed enabled:hover:bg-teal-700'>
+            <AiOutlinePlus className='text-white' />
+          </button>
 
+        </div>
+        <div className='text-center text-sm text-gray-400'>
+          Disponibles: {stock}
+        </div>
       </div>
       {
         stock > 0

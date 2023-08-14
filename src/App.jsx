@@ -1,17 +1,8 @@
-import ItemListContainer from './components/ItemListContainer';
-import Navbar from './components/Navbar';
+import {RouterProvider} from 'react-router-dom';
+import router from './router';
 
-function App() {
+export default function App() {
   return (
-    <div className='h-full min-h-full bg-gradient-to-tr from-teal-50 from-30% via-violet-200 via-95% to-violet-100'>
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        <ItemListContainer greeting='No hay productos en el carrito' />
-      </main>
-    </div>
+    <RouterProvider router={router} />
   );
 }
-
-export default App;
