@@ -1,10 +1,12 @@
 import {PiShoppingCartSimpleThin} from 'react-icons/pi';
+import {Link} from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 
 export default function CartWidget() {
-  const cartCount = 6;
-
+  const {cart, calcItemsQty} = useCart();
+  const cartCount = calcItemsQty(cart);
   return (
-    <a href='#' className='p-2 relative flex justify-center items-center w-14 h-14
+    <Link to='/cart' className='p-2 relative flex justify-center items-center w-14 h-14
     hover:bg-indigo-200 group border-b-2 hover:border-indigo-600 border-transparent
     hover:text-indigo-600'>
       <div className='group-hover:scale-105 transition-all
@@ -21,7 +23,7 @@ export default function CartWidget() {
           {cartCount}
         </span>
       }
-    </a>
+    </Link>
 
   );
 }

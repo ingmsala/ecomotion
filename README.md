@@ -93,6 +93,10 @@ En este proyecto, se han utilizado los siguientes recursos externos:
 
 - React: Biblioteca de JavaScript para construir interfaces de usuario.
 - ReactDOM: Paquete que proporciona métodos específicos del DOM que pueden ser utilizados en el nivel superior de una aplicación web para iniciar la actualización de la interfaz de usuario.
-- React Router DOM: Librería para enrutamiento en aplicaciones React.
-- Icon React: Librería de iconos para React.
-- Tailwind CSS: Un marco de diseño CSS utilitario de bajo nivel.
+- React Router DOM: Librería para enrutamiento en aplicaciones React. (https://reactrouter.com/en/main)
+- Icon React: Librería de iconos para React. (https://react-icons.github.io/react-icons/)
+- Tailwind CSS: Un marco de diseño CSS utilitario de bajo nivel. (https://tailwindcss.com/)
+- Sonner: Librería para gestionar toast en React. (https://sonner.emilkowal.ski/)
+
+//TODO: agregar gif de la navegabilidad de la app
+## DEMO

@@ -1,15 +1,15 @@
 import {useEffect, useState} from 'react';
 import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
 
-export default function ItemCount({stock, initial, onAdd}) {
+export default function ItemCount({item, initial, onAdd}) {
   const [cantidadProducto, setCantidadProducto] = useState(initial);
 
   useEffect(() => {
     setCantidadProducto(1);
-  }, [stock]);
+  }, [item]);
 
   const handleClickSumar = () => {
-    if (cantidadProducto < stock) {
+    if (cantidadProducto < item.stock) {
       setCantidadProducto(cantidadProducto + 1);
     }
   };
@@ -20,7 +20,7 @@ export default function ItemCount({stock, initial, onAdd}) {
     }
   };
 
-  if (stock === 0) {
+  if (item.stock === 0) {
     return (
       <div className='text-gray-700 font-semibold'>Sin stock</div>
     );
@@ -39,7 +39,7 @@ export default function ItemCount({stock, initial, onAdd}) {
 
           <span className='text-gray-700 font-semibold text-center'>{cantidadProducto}</span>
 
-          <button onClick={handleClickSumar} disabled={cantidadProducto >= stock}
+          <button onClick={handleClickSumar} disabled={cantidadProducto >= item.stock}
             className='px-2 py-1 rounded bg-teal-600/80
               disabled:opacity-60 disabled:cursor-not-allowed enabled:hover:bg-teal-700'>
             <AiOutlinePlus className='text-white' />
@@ -47,16 +47,16 @@ export default function ItemCount({stock, initial, onAdd}) {
 
         </div>
         <div className='text-center text-sm text-gray-400'>
-          Disponibles: {stock}
+          Disponibles: {item.stock}
         </div>
       </div>
       {
-        stock > 0
+        item.stock > 0
           ? <button
             className='px-3 py-1 mt-2 rounded bg-transparent
             border border-purple-600 text-purple-600 border-solid
             hover:bg-purple-800 hover:text-white hover:border-transparent'
-            onClick={() => onAdd(cantidadProducto)}>Agregar al carrito
+            onClick={() => onAdd(item, cantidadProducto)}>Agregar al carrito
           </button>
           : <div className='flex items-center'>
             <span className='px-3 py-1 text-gray-700 font-semibold'>Sin stock</span>

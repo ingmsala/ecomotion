@@ -1,28 +1,20 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
 import ItemDetail from './ItemDetail';
-import {getProductById} from '../../services/products';
 import Loading from '../widgets/Loading';
+import useProduct from '../../hooks/useProduct';
 
 export default function ItemDetailContainer() {
-  const [loading, setLoading] = useState(false);
-  const [item, setItem] = useState({});
   const {id} = useParams();
+  const {getProductItemById, itemProduct, loading} = useProduct();
 
   useEffect(() => {
     let ignore = false;
-    const getItem = async () => {
-      setLoading(true);
-      const item = await getProductById(id);
-      if (!ignore) {
-        setItem(item);
-      }
+    if (!ignore) {
+      getProductItemById(id);
+    }
 
-      setLoading(false);
-    };
-
-    getItem();
     return () => {
       ignore = true;
     };
@@ -33,9 +25,8 @@ export default function ItemDetailContainer() {
       {
         loading
           ? <Loading />
-          : <ItemDetail item={item} />
+          : <ItemDetail item={itemProduct} />
       }
-
     </main>
   );
 }
