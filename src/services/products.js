@@ -1,16 +1,26 @@
-import {collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where} from 'firebase/firestore';
+import {collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where} from 'firebase/firestore';
 import {db, storage} from '../api/firebase';
 import seederProduct from '../seed/seederProduct.json';
 import {getDownloadURL, ref} from 'firebase/storage';
 
 export async function setProducts() {
-  const productCollection = collection(db, 'products');
+  if (process.env.REACT_APP_NODE_ENV === 'dev') {
+    const productCollection = collection(db, 'products');
+    const querySnapshot = await getDocs(productCollection);
 
-  seederProduct.forEach(async product => {
-    const image = await getProductImage(product);
-    product.imagen = image;
-    await setDoc(doc(productCollection), product);
-  });
+    querySnapshot.docs.map(async docSearch => {
+      await deleteDoc(doc(db, 'products', docSearch.id));
+    });
+
+    seederProduct.forEach(async product => {
+      const image = await getProductImage(product);
+      product.imagen = image;
+      await setDoc(doc(productCollection), product);
+    });
+    return 'ok';
+  }
+
+  throw Error('No se puede migrar en producción');
 }
 
 export async function getProductImage(product) {

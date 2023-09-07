@@ -79,6 +79,7 @@ REACT_APP_PROJECT_ID = {Firebase Project_ID}
 REACT_APP_STORAGE_BUCKET = {Firebase Storage Bucket}
 REACT_APP_MESSAGING_SENDER_ID = {Firebase Messaging Sender_ID}
 REACT_APP_APP_ID = {Firebase App_ID}
+REACT_APP_NODE_ENV = prod || dev
 ```
 
 ## Uso
@@ -90,8 +91,8 @@ npm start
 ```
 
 > Existen 3 rutas extras que permiten a la aplicación realizar acciones de migración y reseteo de la base de datos de Firebase. Estas rutas son:
-> * `/migrate_product` - Permite migrar los productos desde el archivo `seed/seederProduct.json` a la base de datos de Firebase. Se necesita previamente haber cargado en el servicio de Storage de Firebase las imágenes de los productos que se encuentran en la carpeta `assets/products`.
-> * `/migrate_categories` - Permite migrar las categorías desde el archivo `seed/seederCategory.json` a la base de datos de Firebase.
+> * `/migrate_product` - Permite migrar los productos desde el archivo `seed/seederProduct.json` a la base de datos de Firebase. Se necesita previamente haber cargado en el servicio de Storage de Firebase las imágenes de los productos que se encuentran en la carpeta `assets/products`. Solo funciona configurando el entorno de desarrollo en `dev`.
+> * `/migrate_categories` - Permite migrar las categorías desde el archivo `seed/seederCategory.json` a la base de datos de Firebase. Solo funciona configurando el entorno de desarrollo en `dev`.
 > * `/reset_stock` - Permite resetear el stock de todos los productos a valores random entre 0 y 20 unidades.
 
 ## Recursos externos

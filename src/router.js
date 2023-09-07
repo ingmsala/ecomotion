@@ -9,6 +9,7 @@ import Brief from './ui/pages/Brief';
 import WishListContainer from './ui/pages/WishListContainer';
 import {resetAllStockProduct, setProducts} from './services/products';
 import {setCategories} from './services/categories';
+import {toast} from 'sonner';
 
 export default createBrowserRouter([
   {
@@ -62,7 +63,12 @@ export default createBrowserRouter([
         path: '/migrate_product',
         element: <ItemListContainer />,
         async loader() {
-          await setProducts();
+          toast.promise(setProducts(), {
+            loading: 'Migrando productos...',
+            success: 'Productos migrados',
+            error: 'No se puede migrar en producción',
+          });
+
           return {
             element: <ItemListContainer />,
           };
@@ -71,8 +77,13 @@ export default createBrowserRouter([
       {
         path: '/migrate_categories',
         element: <ItemListContainer />,
-        async loader() {
-          await setCategories();
+        loader() {
+          toast.promise(setCategories(), {
+            loading: 'Migrando categorias...',
+            success: 'Categorias migradas',
+            error: 'No se puede migrar en producción',
+          });
+
           return {
             element: <ItemListContainer />,
           };
