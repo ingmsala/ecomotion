@@ -1,0 +1,20 @@
+[
+    {
+        "description": "Accesorios",
+        "key": "accesorios",
+        "order": 3
+    },
+
+    {
+        "description": "Bicicletas",
+        "key": "bicicletas",
+        "order": 2
+    },
+    
+    {
+        "description": "Scooters",
+        "key": "scooters",
+        "order": 1
+    }
+   
+]

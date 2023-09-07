@@ -1,38 +1,100 @@
-import listProducts from '../mocks/listProducts';
+import {collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where} from 'firebase/firestore';
+import {db, storage} from '../api/firebase';
+import seederProduct from '../seed/seederProduct.json';
+import {getDownloadURL, ref} from 'firebase/storage';
+
+export async function setProducts() {
+  const productCollection = collection(db, 'products');
+
+  seederProduct.forEach(async product => {
+    const image = await getProductImage(product);
+    product.imagen = image;
+    await setDoc(doc(productCollection), product);
+  });
+}
+
+export async function getProductImage(product) {
+  const storageRef = ref(storage, 'products/' + product.imagen);
+  return getDownloadURL(storageRef).then(img => img);
+}
 
 export async function getProducts() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(listProducts);
-    }, 2000);
-  });
+  const productsRef = collection(db, 'products');
+  const querySnapshot = await getDocs(productsRef);
+  const listProducts = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+  return listProducts;
 }
 
 export async function getProductsByCategory(categoryId) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      const products = listProducts.filter(product => product.categoria === categoryId);
-      resolve(products);
-    }, 2000);
-  });
+  const productsRef = collection(db, 'products');
+  const q = query(productsRef, where('categoria', '==', categoryId));
+  const querySnapshot = await getDocs(q);
+  const listProducts = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+
+  if (!listProducts.length) {
+    return null;
+  }
+
+  return listProducts;
 }
 
 export async function getProductById(id) {
+  const productSnapshot = await getDoc(doc(db, 'products', id));
+
+  if (!productSnapshot.exists()) {
+    return null;
+  }
+
+  const productSearch = {id: productSnapshot.id, ...productSnapshot.data()};
+
+  return productSearch;
+}
+
+export async function updateStockProduct(products) {
+  const productsRef = collection(db, 'products');
+
   return new Promise(resolve => {
-    setTimeout(() => {
-      const product = listProducts.find(product => product.id === id);
-      resolve(product);
-    }, 2000);
+    products.forEach(async product => {
+      const docRef = doc(productsRef, product.item.id);
+      const docSnap = await getDoc(docRef);
+
+      const newStock = docSnap.data().stock - product.cantidad;
+
+      if (newStock >= 0) {
+        await updateDoc(docRef, {stock: newStock});
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
   });
 }
 
-export async function getProductRelacionado(producto) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      const product = listProducts.filter(
-        product => product.id !== producto.id && product.categoria === producto.categoria && product.stock > 0);
-      resolve(product.slice(0, 3));
-    }, 2000);
+export async function resetAllStockProduct() {
+  const productsRef = collection(db, 'products');
+  const querySnapshot = await getDocs(productsRef);
+
+  const listProducts = querySnapshot.docs.map(async docSearch => {
+    const docRef = doc(productsRef, docSearch.id);
+
+    const randomStock = Math.floor(Math.random() * 20);
+
+    await updateDoc(docRef, {stock: randomStock});
+    return {id: docSearch.id, ...docSearch.data()};
   });
+
+  return listProducts;
+}
+
+export async function checkStockProductService(product, quantityToBuy = 0) {
+  const productsRef = collection(db, 'products');
+  const docRef = doc(productsRef, product.item.id);
+
+  const docSnap = await getDoc(docRef);
+  if (docSnap.data().stock - quantityToBuy >= 0) {
+    return true;
+  }
+
+  return false;
 }
 

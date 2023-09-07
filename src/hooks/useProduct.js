@@ -1,63 +1,94 @@
 import {useState} from 'react';
-import {getProductById, getProducts, getProductsByCategory} from '../services/products';
+import {checkStockProductService, getProductById,
+  getProducts, getProductsByCategory, resetAllStockProduct} from '../services/products';
 import useCart from './useCart';
 
 export default function useProduct() {
-  const [productos, setProductos] = useState([]);
+  const [products, setProducts] = useState([]);
   const [itemProduct, setItemProduct] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInStock, setIsInStock] = useState(false);
 
   const {cart} = useCart();
 
-  const getRealStock = item => {
+  const getLocalStock = item => {
     const productSearch = cart.find(i => i.item.id === item.id);
     return productSearch ? productSearch.item.stock : item.stock;
   };
 
   async function listProducts() {
-    setLoading(true);
-    const listadoProducts = await getProducts();
-    const fixedListado = fixStockList(listadoProducts);
-    setProductos(fixedListado);
-
-    setLoading(false);
+    setIsLoading(true);
+    const listProducts = await getProducts();
+    const fixedList = fixStockList(listProducts);
+    setProducts(fixedList);
+    setIsLoading(false);
   }
 
   async function listProductsByCategory(categoryId) {
-    setLoading(true);
-    const listadoProducts = await getProductsByCategory(categoryId);
-    const fixedListado = fixStockList(listadoProducts);
-    setProductos(fixedListado);
+    setIsLoading(true);
+    const listProducts = await getProductsByCategory(categoryId);
 
-    setLoading(false);
+    if (listProducts === null) {
+      setProducts([]);
+      setIsLoading(false);
+      return;
+    }
+
+    const fixedList = fixStockList(listProducts);
+    setProducts(fixedList);
+    setIsLoading(false);
   }
 
   async function getProductItemById(id) {
-    setLoading(true);
+    setIsLoading(true);
     const item = await getProductById(id);
+    if (!item) {
+      setIsLoading(false);
+      setItemProduct({});
+      return;
+    }
+
     const fixedItem = fixStockItem(item);
     setItemProduct(fixedItem);
-    setLoading(false);
+    setIsLoading(false);
   }
 
-  function fixStockList(listadoProducts) {
-    return listadoProducts.map(item => fixStockItem(item));
+  async function resetAllStock() {
+    setIsLoading(true);
+    await resetAllStockProduct();
+    listProducts();
+    setIsLoading(false);
+  }
+
+  async function checkStockProduct(product, cantidad) {
+    setIsLoading(true);
+    const inStock = await checkStockProductService(product, cantidad);
+    setIsInStock(inStock);
+    setIsLoading(false);
+  }
+
+  function fixStockList(listProducts) {
+    return listProducts.map(item => fixStockItem(item));
   }
 
   function fixStockItem(item) {
-    const cantidadStock = getRealStock(item);
+    const qtyStock = getLocalStock(item);
     const newItem = {...item};
-    newItem.stock = cantidadStock;
+    newItem.stock = qtyStock;
     return newItem;
   }
 
   return {
     listProducts,
     listProductsByCategory,
-    productos,
-    loading,
+    products,
+    isLoading,
     getProductItemById,
-    getRealStock,
+    getLocalStock,
     itemProduct,
+    resetAllStock,
+    checkStockProduct,
+    isInStock,
+
   };
 }

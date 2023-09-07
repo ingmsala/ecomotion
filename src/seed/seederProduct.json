@@ -1,0 +1,162 @@
+[
+  {
+    "nombre": "EcoGlide Supreme",
+    "descripcion": "Scooter eléctrico de alta velocidad y autonomía. Ideal para desplazamientos urbanos.",
+    "stock": 0,
+    "categoria": "scooters",
+    "imagen": "scooters1.webp",
+    "precio": 249995.00
+  },
+  {
+    "nombre": "GreenScoot Evo",
+    "descripcion": "Scooter eléctrico plegable ideal para recorridos cortos en la ciudad. Fácil de transportar y almacenar.",
+    "stock": 5,
+    "categoria": "scooters",
+    "imagen": "scooters2.webp",
+    "precio": 179500.00
+  },
+  {
+    "nombre": "EcoHelmet Pro",
+    "descripcion": "Casco ligero y resistente, diseñado para la máxima seguridad y comodidad durante los paseos en scooter.",
+    "stock": 15,
+    "categoria": "accesorios",
+    "imagen": "accesorios2.webp",
+    "precio": 24995.00
+  },
+  {
+    "nombre": "EcoGlide Terrain",
+    "descripcion": "Scooter eléctrico todoterreno, ideal para aventuras en terrenos irregulares.",
+    "stock": 8,
+    "categoria": "scooters",
+    "imagen": "scooters3.webp",
+    "precio": 289500.00
+  },
+  {
+    "nombre": "NatureBike Trailblazer",
+    "descripcion": "Bicicleta de montaña de alta gama con suspensión completa y componentes de calidad.",
+    "stock": 3,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas1.webp",
+    "precio": 649995.00
+  },
+  {
+    "nombre": "EcoVest Reflect",
+    "descripcion": "Chaleco altamente visible con reflectantes para mejorar la seguridad del ciclista en la carretera.",
+    "stock": 20,
+    "categoria": "accesorios",
+    "imagen": "accesorios3.webp",
+    "precio": 12250.00
+  },
+  {
+    "nombre": "EcoGlide CityGo",
+    "descripcion": "Scooter eléctrico ligero y compacto, perfecto para desplazamientos cortos y ágiles.",
+    "stock": 12,
+    "categoria": "scooters",
+    "imagen": "scooters4.webp",
+    "precio": 199500.00
+  },
+  {
+    "nombre": "NatureBike Roadster",
+    "descripcion": "Bicicleta de carretera de alta gama para ciclistas profesionales y entusiastas.",
+    "stock": 4,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas2.webp",
+    "precio": 999500.00
+  },
+  {
+    "nombre": "EcoKneeGuard",
+    "descripcion": "Rodilleras resistentes y cómodas para la protección durante la práctica de deportes en bicicleta.",
+    "stock": 18,
+    "categoria": "accesorios",
+    "imagen": "accesorios4.webp",
+    "precio": 14995.00
+  },
+  {
+    "nombre": "EcoGlide Zephyr",
+    "descripcion": "Scooter eléctrico con sistema de suspensión avanzado para mayor comodidad en los trayectos.",
+    "stock": 6,
+    "categoria": "scooters",
+    "imagen": "scooters5.webp",
+    "precio": 324500.00
+  },
+  {
+    "nombre": "GreenBike Classic",
+    "descripcion": "Bicicleta elegante y cómoda para paseos relajados por la ciudad.",
+    "stock": 7,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas3.webp",
+    "precio": 149500.00
+  },
+  {
+    "nombre": "EcoWalker Junior",
+    "descripcion": "Andador ajustable para niños pequeños que comienzan a explorar el mundo sobre ruedas.",
+    "stock": 25,
+    "categoria": "scooters",
+    "imagen": "scooters6.webp",
+    "precio": 19975.00
+  },
+  {
+    "nombre": "EcoGlide Xplorer",
+    "descripcion": "Scooter eléctrico con neumáticos todoterreno para aventuras extremas.",
+    "stock": 9,
+    "categoria": "scooters",
+    "imagen": "scooters7.webp",
+    "precio": 349500.00
+  },
+  {
+    "nombre": "NatureBike Junior Trail",
+    "descripcion": "Bicicleta de montaña diseñada especialmente para jóvenes ciclistas que aman la naturaleza.",
+    "stock": 2,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas4.webp",
+    "precio": 199995.00
+  },
+  {
+    "nombre": "EcoHelmet Advanced",
+    "descripcion": "Casco aerodinámico y ligero con tecnología avanzada para máxima protección.",
+    "stock": 13,
+    "categoria": "accesorios",
+    "imagen": "accesorios1.webp",
+    "precio": 44975.00
+  },
+  {
+    "nombre": "EcoGlide Kids",
+    "descripcion": "Scooter eléctrico diseñado para niños, con velocidad limitada para mayor seguridad.",
+    "stock": 14,
+    "categoria": "scooters",
+    "imagen": "scooters8.webp",
+    "precio": 149500.00
+  },
+  {
+    "nombre": "GreenBike Trail Master",
+    "descripcion": "Bicicleta plegable resistente y versátil para conquistar cualquier terreno.",
+    "stock": 11,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas5.webp",
+    "precio": 274500.00
+  },
+  {
+    "nombre": "EcoProtect Pack",
+    "descripcion": "Conjunto de protecciones que incluye casco, rodilleras, coderas y guantes para mayor seguridad.",
+    "stock": 1,
+    "categoria": "accesorios",
+    "imagen": "accesorios5.webp",
+    "precio": 34995.00
+  },
+  {
+    "nombre": "EcoGlide Deluxe",
+    "descripcion": "Scooter eléctrico de lujo con acabados de lujo y tecnología punta.",
+    "stock": 3,
+    "categoria": "scooters",
+    "imagen": "scooters9.webp",
+    "precio": 499500.00
+  },
+  {
+    "nombre": "GreenBike Urban Cruiser",
+    "descripcion": "Bicicleta de paseo de estilo retro perfecta para paseos relajados y con encanto.",
+    "stock": 8,
+    "categoria": "bicicletas",
+    "imagen": "bicicletas6.webp",
+    "precio": 124750.00
+  }
+]
