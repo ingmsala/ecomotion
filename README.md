@@ -111,4 +111,4 @@ En este proyecto, se han utilizado los siguientes recursos externos:
 
 Link: https://ecomotion.vercel.app/
 
-[![](https://i.imgur.com/zqOGPQT.gif)](https://i.imgur.com/zqOGPQT.gif)
+![demo](https://github.com/ingmsala/ecomotion/assets/23424176/107f2a38-a263-4dd7-92c0-c2ea7bd06818)
